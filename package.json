@@ -7,7 +7,9 @@
     "start:only-hit": "cross-env DEBUG=*,-Fight::getGame node ./src/app.js --ai=only-hit --player-name=OnlyHit --character=warrior --versus=true",
     "start:only-thrust": "cross-env DEBUG=*,-Fight::getGame node ./src/app.js --ai=only-thrust --player-name=OnlyThrust --character=warrior --versus=true",
     "start:only-shield": "cross-env DEBUG=*,-Fight::getGame node ./src/app.js --ai=only-shield --player-name=OnlyShield --character=warrior --versus=true",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "start:yoloswag": "cross-env DEBUG=*,-Fight::getGame node ./src/app.js --ai=yolo-ai --player-name=Untel --character=paladin --versus=false"
+
   },
   "dependencies": {
     "@akanass/rx-http-request": "^2.1.1",

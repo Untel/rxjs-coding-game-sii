@@ -15,37 +15,29 @@ import { AIFactory } from './shared/ai.factory';
  * --game-token
  */
 
-const greatestDuels = [
-  'DavidVsGoliath',
-  'ObiWanVsDarkVador',
-  'NeoVsAgentSmith',
-  'BlackMambaVsORenIshii',
-  'AchilleVsHector',
-  'T800VsT1000',
-  'SpiderManVsOctopus',
-  'LukeVsDarkVador',
-  'WillTurnerVsJackSparrow',
-  'HarryPotterVsVoldemort'
-];
-
 const info = {
-  game      : greatestDuels[ Math.floor(Math.random() * greatestDuels.length) ],
+  game      : 'Partie de Untel',
   playerKey : argv.playerKey || Math.random().toString(36).substring(7),
-  playerName: argv.playerName || 'no-name'
+  playerName: argv.playerName || 'Untel'
 };
 
 let initObs = null;
 
 if (argv.gameToken) {
   initObs = Fight.joinGame(argv.gameToken,
-    info.playerKey,
-    argv.character && CharacterType.isCharacterType(argv.character.toUpperCase()) ? argv.character.toUpperCase() : CharacterType.WARRIOR,
-    info.playerName);
+                           info.playerKey,
+                           argv.character && CharacterType.isCharacterType(argv.character.toUpperCase()) ? argv.character.toUpperCase() : CharacterType.WARRIOR,
+                           info.playerName);
 } else {
-  initObs = Fight.createGame(info.game, false, argv.versus || false).flatMap((game) => Fight.joinGame(game.token,
-    info.playerKey,
-    argv.character && CharacterType.isCharacterType(argv.character.toUpperCase()) ? argv.character.toUpperCase() : CharacterType.WARRIOR,
-    info.playerName))
+  initObs = Fight
+    .createGame(info.game, false, argv.versus || false)
+    .flatMap((game) => Fight
+      .joinGame(game.token,
+                info.playerKey,
+                argv.character && CharacterType.isCharacterType(argv.character.toUpperCase()) ? argv.character.toUpperCase() : CharacterType.WARRIOR,
+                info.playerName
+      )
+    )
 }
 
 initObs.subscribe((game) => {

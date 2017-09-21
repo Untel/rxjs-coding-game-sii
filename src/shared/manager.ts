@@ -14,6 +14,7 @@ export class Manager {
   }
 
   performAction (action: CharacterAction): void {
+    console.log('Performing ', action);
     this.performActionAndWait(action, CharacterActionCooldown.get(action));
   }
 
