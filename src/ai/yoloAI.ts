@@ -15,5 +15,6 @@ export default class YoloAI extends AI {
     } else {
       this.manager.performAction(CharacterAction.HIT);
     }
+    
   }
 }
